@@ -9,8 +9,8 @@ exp<-function(t,y,params){
   J<-y[5]
   R<-y[6]
   with(as.list(params),{
-    dS<-Pi-(S[beta*I+eJ*beta*J]/N)-mu*S
-    dE<-(S[beta*I+eJ*beta*J]/N)-(y1+k1+mu)*E
+    dS<-Pi-(S*(beta*I+eJ*beta*J)/N)-mu*S
+    dE<-(S*(beta*I+eJ*beta*J)/N)-(y1+k1+mu)*E
     dQ<-y1*E-(k2+mu)*Q
     dI<-k1*E-(y2+d1+sigma1+mu)*I
     dJ<-y2*I+k2*Q-(sigma2+d2+mu)*J
@@ -53,5 +53,5 @@ times <- seq(0,10,0.01)
 # The lsoda command solves the differential equation and saves the results in a data frame
 nsol <- as.data.frame(lsoda(y=c(S=S0,E=E0,Q=Q0,I=I0,J=J0,R=R0), times, exp, params))
 
-
+plot(nsol$time,nsol$N,ylab ="Population size",xlab="Time",ylim=c(0,1000),type="l")
 
