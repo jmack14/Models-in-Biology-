@@ -9,8 +9,8 @@ exp<-function(t,y,params){
   J<-y[5]
   R<-y[6]
   with(as.list(params),{
-    dS<-Pi-(S*(beta*I+eJ*beta*J)/N)-mu*S
-    dE<-(S*(beta*I+eJ*beta*J)/N)-(y1+k1+mu)*E
+    dS<-Pi-(S*(beta*I+eE*beta*E+eQ*beta*Q+eJ*beta*J)/N)-mu*S
+    dE<-p+(S*(beta*I+eE*beta*E+eQ*beta*Q+eJ*beta*J)/N)-(y1+k1+mu)*E
     dQ<-y1*E-(k2+mu)*Q
     dI<-k1*E-(y2+d1+sigma1+mu)*I
     dJ<-y2*I+k2*Q-(sigma2+d2+mu)*J
@@ -44,6 +44,9 @@ sigma1<-0.0377
 sigma2<-0.0386
 params<-c(Pi=Pi)
 N=4000007
+p<-0.06
+eE<-0.5
+eQ<-0.5
 
 
 
